@@ -6,17 +6,17 @@ pipeline {
         }
     }
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/aslamafif29/simple-java-maven-app.git'
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         git 'https://github.com/aslamafif29/simple-java-maven-app.git'
+        //     }
+        // }
         stage('Build') {
             steps {
                 sh 'mvn clean install'
             }
         }
-        stage('Test') { 
+         stage('Test') { 
             steps {
                 sh './jenkins/scripts/test.sh' 
             }
