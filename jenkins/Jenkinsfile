@@ -18,10 +18,10 @@ pipeline {
         }
         stage('Test') {
             steps {
-                // Verifikasi file dan izin eksekusi
-                sh 'ls -l ./jenkins/scripts/'  // Verifikasi file dan izin eksekusi
-                sh 'chmod +x ./jenkins/scripts/test.sh'  // Berikan izin eksekusi pada script
-                sh './jenkins/scripts/test.sh'  // Jalankan script setelah diubah izin
+                // Verifikasi apakah file test.sh ada dan memiliki izin eksekusi
+                sh 'ls -l ./jenkins/scripts/'
+                sh 'chmod +x ./jenkins/scripts/test.sh' // Pastikan script memiliki izin eksekusi
+                sh './jenkins/scripts/test.sh' // Jalankan script test.sh
             }
             post {
                 always {
