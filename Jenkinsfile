@@ -1,19 +1,19 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:16-buster-slim'
-            args '-p 3000:3000'
-        }
-    }
+    agent any
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                sh 'npm install'
+                git 'https://github.com/aslamafif29/simple-java-maven-app'
             }
         }
-        stage('Test') { 
+        stage('Build') {
             steps {
-                sh './jenkins/scripts/test.sh' 
+                sh 'mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
             }
         }
     }
