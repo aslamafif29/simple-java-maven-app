@@ -6,6 +6,11 @@ pipeline {
         }
     }
     stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/aslamafif29/simple-java-maven-app.git'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
@@ -13,9 +18,10 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'ls -l ./jenkins/scripts/'  // Verifikasi apakah file test.sh ada dan memiliki izin eksekusi
-                sh 'chmod +x ./jenkins/scripts/test.sh'  // Pastikan script memiliki izin eksekusi
-                sh './jenkins/scripts/test.sh'
+                // Verifikasi file dan izin eksekusi
+                sh 'ls -l ./jenkins/scripts/'  // Verifikasi file dan izin eksekusi
+                sh 'chmod +x ./jenkins/scripts/test.sh'  // Berikan izin eksekusi pada script
+                sh './jenkins/scripts/test.sh'  // Jalankan script setelah diubah izin
             }
             post {
                 always {
