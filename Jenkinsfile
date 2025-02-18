@@ -1,9 +1,14 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.8-jdk-11'
+            args '-p 3000:3000'
+        }
+    }
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/aslamafif29/simple-java-maven-app'
+                git 'https://github.com/aslamafif29/simple-java-maven-app.git'
             }
         }
         stage('Build') {
@@ -11,9 +16,9 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('Test') {
+        stage('Test') { 
             steps {
-                sh 'mvn test'
+                sh './jenkins/scripts/test.sh' 
             }
         }
     }
