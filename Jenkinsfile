@@ -5,12 +5,15 @@ pipeline {
             args '-p 3000:3000'
         }
     }
+    environment {
+        CI = 'true'
+    }
     stages {
-        // stage('Checkout') {
-        //     steps {
-        //         git 'https://github.com/aslamafif29/simple-java-maven-app.git'
-        //     }
-        // }
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/aslamafif29/simple-java-maven-app.git'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn clean install'
@@ -21,5 +24,6 @@ pipeline {
                 sh './jenkins/scripts/test.sh' 
             }
         }
+        
     }
 }
