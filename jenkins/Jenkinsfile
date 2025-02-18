@@ -21,7 +21,7 @@ pipeline {
                 // Verifikasi apakah file test.sh ada dan memiliki izin eksekusi
                 sh 'ls -l ./jenkins/scripts/'
                 sh 'chmod +x ./jenkins/scripts/test.sh' // Pastikan script memiliki izin eksekusi
-                sh './jenkins/scripts/test.sh' // Jalankan script test.sh
+                sh './jenkins/scripts/test.sh' // Jalankan script test.shh
             }
             post {
                 always {
